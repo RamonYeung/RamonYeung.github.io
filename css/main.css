@@ -1663,7 +1663,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #91ffda;
+  background: #ff0195;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2149,20 +2149,24 @@ a.search-result {
   top: 42%;
   color: #ccc;
 }
+.busuanzi-count,
 .site-uv,
 .site-pv,
 .page-pv {
   display: inline-block;
 }
+.busuanzi-count .busuanzi-value,
 .site-uv .busuanzi-value,
 .site-pv .busuanzi-value,
 .page-pv .busuanzi-value {
   margin: 0 5px;
 }
-.site-uv {
+.site-uv,
+.theme-info {
   margin-right: 10px;
 }
-.site-uv::after {
+.site-uv::after,
+.theme-info::after {
   content: "|";
   padding-left: 10px;
 }
