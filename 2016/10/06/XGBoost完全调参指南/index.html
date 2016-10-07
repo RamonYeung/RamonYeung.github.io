@@ -1,0 +1,757 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="XGBoost,Parameters tuning," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/x.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="花了三四天学习XGBoost，这篇文章教会了我如何调参。我把文章的主要内容作翻译和摘录，也算是为XGboost中文社区贡献一份资源。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XGBoost完全调参指南(Python)">
+<meta property="og:url" content="http://ramonyeung.github.io/2016/10/06/XGBoost完全调参指南/index.html">
+<meta property="og:site_name" content="O'Ramon Lab">
+<meta property="og:description" content="花了三四天学习XGBoost，这篇文章教会了我如何调参。我把文章的主要内容作翻译和摘录，也算是为XGboost中文社区贡献一份资源。">
+<meta property="og:updated_time" content="2016-10-07T08:22:37.856Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XGBoost完全调参指南(Python)">
+<meta name="twitter:description" content="花了三四天学习XGBoost，这篇文章教会了我如何调参。我把文章的主要内容作翻译和摘录，也算是为XGboost中文社区贡献一份资源。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '作者'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ramonyeung.github.io/2016/10/06/XGBoost完全调参指南/"/>
+
+  <title> XGBoost完全调参指南(Python) | O'Ramon Lab </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">O'Ramon Lab</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                XGBoost完全调参指南(Python)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-06T23:48:21+08:00" content="2016-10-06">
+              2016-10-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/06/XGBoost完全调参指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/06/XGBoost完全调参指南/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>花了三四天学习XGBoost，这篇<a href="http://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/" target="_blank" rel="external">文章</a>教会了我如何调参。我把文章的主要内容作翻译和摘录，也算是为XGboost中文社区贡献一份资源。</p>
+<a id="more"></a> 
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>XGBoost中的算法已经成为了许多数据科学家的终极武器了！这是一个内部实现高度复杂的算法，在处理各种不规范的数据时有强大的表现。</p>
+<p>（由于DMLC已经将代码和文档不断完善）利用XGBoost建立一个模型是简单的，但是因为它使用了众多参数，所以提升它的预测效果是比较有难度的。其中调参是重要的一步，但仍然有很多现实的挑战——哪些参数是我们需要调整的？每个参数的最佳值又应该是多少呢？</p>
+<p>因此，这篇文章最适合刚刚接触XGBoost的人，我们将会了解到调整参数的步骤，获得一些有关XGBoost的新理解。本文使用的语言是Python.</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>XGBoost（eXtreme Gradient Boosting）是一些梯度提升算法的先进实现。另外一篇文章<a href="http://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/" target="_blank" rel="external">《GBM完全调参指南(in Python)》</a>能帮助你理解Boosting这一模型提升技术以及GBM调参的步骤。同时，你能了解GBM中参数的内涵。</p>
+<h3 id="XGBoost的优势"><a href="#XGBoost的优势" class="headerlink" title="XGBoost的优势"></a>XGBoost的优势</h3><h4 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h4><ul>
+<li>XGBoost在标准的GBM实现中增加了正则化，从而能有效避免过拟合</li>
+</ul>
+<h4 id="并行计算"><a href="#并行计算" class="headerlink" title="并行计算"></a>并行计算</h4><ul>
+<li>XGBoost实现了并行计算，实在是太快了！（众所周知，Boosting依赖串行序列已有的计算结果，如何并行化呢？看<a href="http://zhanpengfang.github.io/418home.html" target="_blank" rel="external">这里</a>）</li>
+<li>XGBoost同时支持Hadoop分布式版本的实现</li>
+</ul>
+<h4 id="灵活性高"><a href="#灵活性高" class="headerlink" title="灵活性高"></a>灵活性高</h4><ul>
+<li>XGBoost允许代码家自定义优化目标函数和评价标准（指标/函数）</li>
+<li>这使得模型能够获得更多生命力和自由度，你可以任意发挥想象去定义上述函数</li>
+</ul>
+<h4 id="能处理缺失值"><a href="#能处理缺失值" class="headerlink" title="能处理缺失值"></a>能处理缺失值</h4><ul>
+<li>XGBoost内置了一套对缺失值进行处理的方法，并提供接口</li>
+<li>使用者必须提供一个与现有取值都不相同的特殊值来代替缺失值。默认是-999. 如果每个节点都有缺失值，XGBoost会采取特殊的处理，尝试学习哪个路径是更好的选择</li>
+</ul>
+<h4 id="树剪枝"><a href="#树剪枝" class="headerlink" title="树剪枝"></a>树剪枝</h4><ul>
+<li>GBM模型的停止条件是当节点继续分列时不能减少损失。这是一种贪心的策略</li>
+<li>XGBoost通过指定参数max_depth限制最大的分裂次数（深度），停止分裂的条件是分裂不能带来正增益</li>
+</ul>
+<h4 id="内置交叉验证CV"><a href="#内置交叉验证CV" class="headerlink" title="内置交叉验证CV"></a>内置交叉验证CV</h4><ul>
+<li>XGBoost允许使用者在每次迭代都进行一次交叉验证。因此，很容易在一次实验中直接得到最佳的迭代次数</li>
+<li>而GBM只能进行参数网格搜索来测试有限的取值，进而确定最佳迭代次数</li>
+</ul>
+<h4 id="模型的继续训练"><a href="#模型的继续训练" class="headerlink" title="模型的继续训练"></a>模型的继续训练</h4><ul>
+<li>使用者能继续从上一次模型的结束位置开始进一步的训练，这在某些具体应用场景中非常有优势</li>
+<li>GBM的sklearn实现也有类似的功能（即将模型保存至硬盘）</li>
+</ul>
+<h3 id="XGBoost中的三类参数"><a href="#XGBoost中的三类参数" class="headerlink" title="XGBoost中的三类参数"></a>XGBoost中的三类参数</h3><h4 id="General-Parameters"><a href="#General-Parameters" class="headerlink" title="General Parameters"></a>General Parameters</h4><ol>
+<li><strong>booster</strong><br>根据你的需要选择每一轮迭代中的模型类型，默认情况是gbtree, 另外一种是gblinear. 多数情况下，前者的表现优于后者。</li>
+<li><strong>silent</strong><br>默认为0，将会在运行代码过程中打印提示信息。有助于你探索和理解XGBoost.在使用命令行环境时，建议设置为1.</li>
+<li><strong>nthread</strong><br>默认为最大CPU核数。算法会自动检测可用的最大核数，此时解锁并行计算。这将会占用几乎CPU的所有计算资源（以尽快计算出结果）。</li>
+</ol>
+<h4 id="Booster-Parameters"><a href="#Booster-Parameters" class="headerlink" title="Booster Parameters"></a>Booster Parameters</h4><ol>
+<li><p><strong>eta</strong><br>默认取值为0.3，类似于GBM的学习率，每一步都以此系数来缩小权重，使得模型的学习更加稳健，泛化能力更强。在调参之后，典型的取值为0.01-0.2. 这是经验规律。</p>
+</li>
+<li><p><strong>min_child_weight</strong><br>默认是1，对应于在一个叶子节点中，样本的最小权重和。这是停止条件。类似于GBM中的min_child_leaf，但这里是权重和，GBM中是最小样本数。主要是用于限制模型拟合离群值，合适的值通常避免欠拟合或过拟合。</p>
+</li>
+<li><p><strong>max_depth</strong><br>默认是6，用于控制模型过拟合。典型取值是3-10.</p>
+</li>
+<li><p><strong>max_leaf_nodes</strong><br>一棵树的允许的最大叶子节点数。如果是二叉树，这实际上和树的深度有关。</p>
+</li>
+<li><p><strong>gamma</strong><br>默认是0，每一次尝试拆分节点时，必须使得损失函数下降一个大于gamma的数值，才能够被模型接受这次拆分。如果自定义了不同的损失函数，可以尝试调大gamma值，使得模型更加保守。</p>
+</li>
+<li><p><strong>subsample</strong><br>默认是1，这与GBM中的参数类似，在训练一棵树时，将按subsample的比例随机抽取样本作为输入。它同样是一个用于防止过拟合的参数。典型取值是0.5-1.</p>
+</li>
+<li><p><strong>colsample_bytree</strong><br>默认是1，类似subsample，在训练一棵树时，按colsample_bytree的比例随机抽取某些特征进行训练。</p>
+</li>
+<li><p><strong>lambda</strong><br>默认是1，L2正则化项的权重，类似岭回归。</p>
+</li>
+<li><p><strong>alpha</strong><br>默认为0， L1正则化项，类似Lasso回归。在特征维度非常高时比较适用。</p>
+</li>
+</ol>
+<h4 id="Learning-Task-Parameters"><a href="#Learning-Task-Parameters" class="headerlink" title="Learning Task Parameters"></a>Learning Task Parameters</h4><ol>
+<li><p><strong>objective</strong><br>默认是reg:linear，这将指定你的损失函数。常用的值有binary:logistic, multi:softmax, multi:softprob.</p>
+</li>
+<li><p><strong>eval_metric</strong><br>默认值随objective的具体情况而改变。常见的有:</p>
+</li>
+</ol>
+<ul>
+<li><strong>rmse</strong>(root mean square error)</li>
+<li><strong>mae</strong>(mean absolute error)</li>
+<li><strong>logloss</strong>(negative log-likelihood)</li>
+<li><strong>error</strong>(Binary classification error rate)</li>
+<li><strong>merror</strong>(Multiclass classification error rate)</li>
+<li><strong>mlogloss</strong>(Multiclass logloss)</li>
+<li><strong>auc</strong>(Area under the curve)</li>
+</ul>
+<ol>
+<li><strong>seed</strong><br>默认是0，随机种子数。</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>打赏作者一个苹果</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.png" alt="Ramon WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="Ramon Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/XGBoost/" rel="tag">#XGBoost</a>
+          
+            <a href="/tags/Parameters-tuning/" rel="tag">#Parameters tuning</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/07/什么是特征工程/" rel="prev" title="what-is-feature-engineering">
+                what-is-feature-engineering <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/10/06/XGBoost完全调参指南/"
+     data-title="XGBoost完全调参指南(Python)"
+     data-content=""
+     data-url="http://ramonyeung.github.io/2016/10/06/XGBoost完全调参指南/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/06/XGBoost完全调参指南/"
+           data-title="XGBoost完全调参指南(Python)" data-url="http://ramonyeung.github.io/2016/10/06/XGBoost完全调参指南/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Ramon" />
+          <p class="site-author-name" itemprop="name">Ramon</p>
+          <p class="site-description motion-element" itemprop="description">Life is too short to live.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/RamonYeung" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005051995474551/home?from=page_100505&mod=TAB&is_all=1#place" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yang-hai-hong" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-paper-plane"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://cosmochan.com/" title="Cosmo" target="_blank">Cosmo</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XGBoost的优势"><span class="nav-text">XGBoost的优势</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正则化"><span class="nav-text">正则化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并行计算"><span class="nav-text">并行计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#灵活性高"><span class="nav-text">灵活性高</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#能处理缺失值"><span class="nav-text">能处理缺失值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#树剪枝"><span class="nav-text">树剪枝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内置交叉验证CV"><span class="nav-text">内置交叉验证CV</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型的继续训练"><span class="nav-text">模型的继续训练</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XGBoost中的三类参数"><span class="nav-text">XGBoost中的三类参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#General-Parameters"><span class="nav-text">General Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Booster-Parameters"><span class="nav-text">Booster Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Learning-Task-Parameters"><span class="nav-text">Learning Task Parameters</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ramon</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ramonyeung"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
