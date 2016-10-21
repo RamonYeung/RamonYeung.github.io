@@ -1,0 +1,950 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="正则表达式,Python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/x.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Regular Expression is all about the patterns within string, which forms a language of logic.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式入门">
+<meta property="og:url" content="http://ramonyeung.github.io/2016/10/21/regex-primer/index.html">
+<meta property="og:site_name" content="O'Ramon Lab">
+<meta property="og:description" content="Regular Expression is all about the patterns within string, which forms a language of logic.">
+<meta property="og:image" content="http://images.cnblogs.com/cnblogs_com/huxi/Windows-Live-Writer/Python_10A67/pyre_ebb9ce1c-e5e8-4219-a8ae-7ee620d5f9f1.png">
+<meta property="og:updated_time" content="2016-10-21T15:46:25.249Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式入门">
+<meta name="twitter:description" content="Regular Expression is all about the patterns within string, which forms a language of logic.">
+<meta name="twitter:image" content="http://images.cnblogs.com/cnblogs_com/huxi/Windows-Live-Writer/Python_10A67/pyre_ebb9ce1c-e5e8-4219-a8ae-7ee620d5f9f1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '作者'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ramonyeung.github.io/2016/10/21/regex-primer/"/>
+
+  <title> 正则表达式入门 | O'Ramon Lab </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">O'Ramon Lab</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                正则表达式入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-21T23:17:21+08:00" content="2016-10-21">
+              2016-10-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/21/regex-primer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/21/regex-primer/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/21/regex-primer/" class="leancloud_visitors" data-flag-title="正则表达式入门">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Regular Expression is all about the patterns within string, which forms a language of logic.</p>
+<a id="more"></a>
+<h3 id="1-读者须知"><a href="#1-读者须知" class="headerlink" title="1. 读者须知"></a>1. 读者须知</h3><p>这篇文章只能介绍以下入门级知识：</p>
+<ul>
+<li>正则表达式的思维方式</li>
+<li>正则表达式的相关概念</li>
+<li>如何写出正确的正则表达式</li>
+<li>re — Python Build-in Module</li>
+</ul>
+<p>这篇文章不能为你介绍正则表达式的历史或演进、底层编译逻辑等内容。</p>
+<h3 id="2-简介"><a href="#2-简介" class="headerlink" title="2. 简介"></a>2. 简介</h3><p>正则表达式（Regular Expression, regex）可以认为一种小型的计算机语言，用于表达某种字符（串）模式。我个人第一次学习的时候，感觉到它要求使用者有严格的逻辑。希望读者在文章的最后能感觉到，这篇文章使用了正则表达式的逻辑来介绍正则表达式。</p>
+<p>我觉得正则表达式是一种必需品。每一个代码家都应该学会它，至少有所了解，并能写出简单的正则表达式匹配某些常见模式。说它必不可少，是因为在和字符串打交道的时候，固定的函数几乎不可能满足我们的“处理刚需”。</p>
+<p>举个例子，找出电话本中所有名字含有“叶”的人名。它可能是姓“叶”，或者第二个字、第三个字是“叶”。这种情况比较简单，由于中文名字的长度非常有限，代码多啰嗦几行，便能完成任务。</p>
+<p>更符合人类思维方式的做法是：直接显式地指明这个模式（pattern）——<strong>“叶”字前后均有可能有字符（串）</strong>的人名。比如叶青，麻仓叶等。极端的例子是：叶叶叶叶。</p>
+<blockquote>
+<p>Where there is a pattern, there is a regex.</p>
+</blockquote>
+<h3 id="3-regex相关概念"><a href="#3-regex相关概念" class="headerlink" title="3. regex相关概念"></a>3. regex相关概念</h3><h4 id="3-1-字符集"><a href="#3-1-字符集" class="headerlink" title="3.1 字符集"></a>3.1 字符集</h4><p>正则表达式中的主体是：<strong>字符集 + 数量词</strong>。字符集用于表明哪些字符会参与模式匹配，数量词表示匹配的次数。在上面的例子中，“叶”是我们唯一需要匹配的字符，而它在人名（被匹配的字符串文本）中几乎只会出现1次。所以数量词的限制也是处理过程中的刚需。也就是说，我们不希望“叶叶”或“叶叶叶”出现在最后的结果中。</p>
+<p><code>[….]</code>表示一个用于匹配的<strong>自定义字符集</strong>，意味着对应位置可以是字符集中的任一字符。<code>a[bcd]e</code>代表了abe，ace，ade三种可能，也可以写成<code>a[b-d]e</code>。</p>
+<p>字符集中，我们可以使用<strong>范围</strong>来表示一堆字符。</p>
+<ul>
+<li><code>[a-z]</code>表示所有小写字母，</li>
+<li><code>[0-9]</code>表示数字字符集<code>[0123456789]</code>。</li>
+</ul>
+<p>范围可以堆砌。比如使用<code>[a-zA-Z0-9]</code>表示所有的大小写字母以及数字。而常用的字符集被预先定义好了，优秀的程序猿都是很贴心的。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">预定义字符集</th>
+<th style="text-align:center">含义</th>
+<th style="text-align:center">等价字符集</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>\d</code></td>
+<td style="text-align:center">数字</td>
+<td style="text-align:center"><code>[0-9]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\D</code></td>
+<td style="text-align:center">非数字</td>
+<td style="text-align:center"><code>[^\d]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\s</code></td>
+<td style="text-align:center">各种空白字符</td>
+<td style="text-align:center"><code>[ \t\r\n\f\v]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\S</code></td>
+<td style="text-align:center">非空白字符</td>
+<td style="text-align:center"><code>[^\s]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\w</code></td>
+<td style="text-align:center">单词字符</td>
+<td style="text-align:center">[A-Za-z0-9_]</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\W</code></td>
+<td style="text-align:center">非单词字符</td>
+<td style="text-align:center">[^\w]</td>
+</tr>
+</tbody>
+</table>
+<p>观察上表，<code>^</code>放在字符集的最前表示取反。大写的均为反义。建议背下来。</p>
+<h4 id="3-2-数量词"><a href="#3-2-数量词" class="headerlink" title="3.2 数量词"></a>3.2 数量词</h4><p>上文已经提到“叶叶叶叶”，暗示正则表达式强大之处在于匹配不定长的字符串。定制这个需求依赖于<strong>数量词</strong>。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量词</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>*</code></td>
+<td style="text-align:center">匹配前一个字符0或无限次</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>+</code></td>
+<td style="text-align:center">匹配前一个字符1或无限次</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>?</code></td>
+<td style="text-align:center">匹配前一个字符0或1次</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{m}</code></td>
+<td style="text-align:center">匹配前一个字符m次</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{m,n}</code></td>
+<td style="text-align:center">匹配前一个字符m到n次</td>
+</tr>
+</tbody>
+</table>
+<p>举例：姓“叶”的或姓“王”的，写成<code>[叶王]{1}</code>。不适合写成<code>[叶王]？</code>，因为可能是0次出现。这是危险的。假设有叶子，叶问，叶儿，王儿，海儿，并想找出姓“叶”或“王”，名为“儿”的所有名字，写成<code>[叶王]{1}儿</code>是正确的，但是<code>[叶王]？儿</code>则会多出一个“海儿”的结果。</p>
+<p>到此，读者应该体会到正则表达式是一种<strong>关于逻辑的表达</strong>，用于过滤意料之外的情况。如果考虑不周，则可能得到意想不到的结果。更多详细介绍参见文末附表。</p>
+<h4 id="3-3-贪婪模式"><a href="#3-3-贪婪模式" class="headerlink" title="3.3 贪婪模式"></a>3.3 贪婪模式</h4><p>正则表达式在Python中默认是贪婪的。例如，<code>aa&lt;div&gt;bb&lt;/div&gt;cc&lt;div&gt;dd&lt;/div&gt;ee</code>中，我们关心<code>&lt;div&gt;</code>和 <code>&lt;/div&gt;</code>之间的信息bb和dd。</p>
+<p>如果使用<code>&lt;div&gt;.*&lt;/div&gt;</code>会返回<code>bb&lt;/div&gt;cc&lt;div&gt;dd</code>.（’.’可以匹配任意出换行符之外的字符）。</p>
+<p>如果需要关闭贪婪模式，需要在数量词后紧接一个<code>&#39;?&#39;</code>，即<code>&lt;div&gt;.*？&lt;/div&gt;</code>，此时返回bb。</p>
+<h4 id="3-4-转义"><a href="#3-4-转义" class="headerlink" title="3.4 转义"></a>3.4 转义</h4><p>与大多数编程语言相同，正则表达式里使用<code>\</code>作为转义字符，这就可能造成反斜杠困扰。</p>
+<p>假如你需要匹配文本中的字符<code>\</code>，那么使用编程语言表示的正则表达式里将需要4个反斜杠<code>\\\\</code>：前两个和后两个分别用于在编程语言里转义成反斜杠，转换成两个反斜杠后再在正则表达式里转义成一个反斜杠。</p>
+<p>Python里的原生字符串很好地解决了这个问题，我们可以在字符串前缀<code>r</code>，来显式声明这是一个正则表达式。上面的例子中，正则表达式<code>\\\\</code>等价于<code>r&quot;\\&quot;</code>。同样，匹配一个数字的<code>\\d</code>可以写成<code>r&quot;\d&quot;</code>。有了原生字符串，你再也不用担心是不是漏写了反斜杠，写出来的表达式也更直观。</p>
+<h3 id="4-re模块简介"><a href="#4-re模块简介" class="headerlink" title="4. re模块简介"></a>4. re模块简介</h3><h4 id="4-1-re-compile-pattern-flags-0"><a href="#4-1-re-compile-pattern-flags-0" class="headerlink" title="4.1 re.compile(pattern, flags=0)"></a>4.1 re.compile(pattern, flags=0)</h4><p>预先将正则表达式编译为RegexObject，如需在循环中多次调用，预编译可以节省时间。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pattern = re.compile(some_regex)</div><div class="line">result = pattern.match(string)</div><div class="line"><span class="comment"># 等价于</span></div><div class="line">result = re.match(some_regex, string)</div></pre></td></tr></table></figure>
+<p>第二个参数flag是匹配模式，取值可以使用按位或运算符’|’表示同时生效，比如re.I | re.M。这里尚未研究。但<code>re.X</code>比较实用，指详细模式。这个模式下正则表达式可以是多行，忽略空白字符，并可以加入注释。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a = re.compile(<span class="string">r"""\d +  # 整数部分</span></div><div class="line">                   \.    # 小数点</div><div class="line">                   \d *  # 小数部分""", re.X)</div><div class="line">b = re.compile(<span class="string">r"\d+\.\d*"</span>)</div></pre></td></tr></table></figure>
+<p>可以提高表达式可读性，也可以方便coder自行拆分复杂表达式，确保不会犯逻辑错误。</p>
+<h4 id="4-2-re-match-pattern-string-flags-0"><a href="#4-2-re-match-pattern-string-flags-0" class="headerlink" title="4.2 re.match(pattern, string, flags=0)"></a>4.2 re.match(pattern, string, flags=0)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> re</div><div class="line">m = re.match(<span class="string">r'(\w+) (\w+)(?P&lt;sign&gt;.*)'</span>, <span class="string">'hello world!'</span>)</div><div class="line"> </div><div class="line"><span class="keyword">print</span> <span class="string">"m.string:"</span>, m.string</div><div class="line"><span class="keyword">print</span> <span class="string">"m.re:"</span>, m.re</div><div class="line"><span class="keyword">print</span> <span class="string">"m.pos:"</span>, m.pos</div><div class="line"><span class="keyword">print</span> <span class="string">"m.endpos:"</span>, m.endpos</div><div class="line"><span class="keyword">print</span> <span class="string">"m.lastindex:"</span>, m.lastindex</div><div class="line"><span class="keyword">print</span> <span class="string">"m.lastgroup:"</span>, m.lastgroup</div><div class="line"> </div><div class="line"><span class="keyword">print</span> <span class="string">"m.group(1,2):"</span>, m.group(<span class="number">1</span>, <span class="number">2</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">"m.groups():"</span>, m.groups()</div><div class="line"><span class="keyword">print</span> <span class="string">"m.groupdict():"</span>, m.groupdict()</div><div class="line"><span class="keyword">print</span> <span class="string">"m.start(2):"</span>, m.start(<span class="number">2</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">"m.end(2):"</span>, m.end(<span class="number">2</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">"m.span(2):"</span>, m.span(<span class="number">2</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">r"m.expand(r'\2 \1\3'):"</span>, m.expand(<span class="string">r'\2 \1\3'</span>)</div><div class="line"> </div><div class="line"><span class="comment">### output ###</span></div><div class="line"><span class="comment"># m.string: hello world!</span></div><div class="line"><span class="comment"># m.re: &lt;_sre.SRE_Pattern object at 0x016E1A38&gt;</span></div><div class="line"><span class="comment"># m.pos: 0</span></div><div class="line"><span class="comment"># m.endpos: 12</span></div><div class="line"><span class="comment"># m.lastindex: 3</span></div><div class="line"><span class="comment"># m.lastgroup: sign</span></div><div class="line"><span class="comment"># m.group(1,2): ('hello', 'world')</span></div><div class="line"><span class="comment"># m.groups(): ('hello', 'world', '!')</span></div><div class="line"><span class="comment"># m.groupdict(): &#123;'sign': '!'&#125;</span></div><div class="line"><span class="comment"># m.start(2): 6</span></div><div class="line"><span class="comment"># m.end(2): 11</span></div><div class="line"><span class="comment"># m.span(2): (6, 11)</span></div><div class="line"><span class="comment"># m.expand(r'\2 \1\3'): world hello!</span></div></pre></td></tr></table></figure>
+<h4 id="4-3-re-sub-pattern-repl-string-count-0-flags-0"><a href="#4-3-re-sub-pattern-repl-string-count-0-flags-0" class="headerlink" title="4.3 re.sub(pattern, repl, string, count=0, flags=0)"></a>4.3 re.sub(pattern, repl, string, count=0, flags=0)</h4><p>重要参数的含义依次为：匹配的模式，用于替换的字符串，原字符串。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">text = <span class="string">'aaabbbccc'</span></div><div class="line">text = re.sub(<span class="string">r'aab&#123;3&#125;c?'</span>, <span class="string">'123'</span>, text)</div><div class="line"><span class="keyword">print</span> text</div><div class="line"><span class="comment"># text此时为 a123cc . 因为匹配到了aabbbc. </span></div><div class="line"><span class="comment"># 可以看到？表示0或1次，这里匹配了1次，也是贪婪的</span></div><div class="line"><span class="comment"># 等价于</span></div><div class="line">text = <span class="string">'aaabbbccc'</span></div><div class="line">pattern = re.compile(<span class="string">r'aab&#123;3&#125;c?'</span>)</div><div class="line">text = pattern.sub(<span class="string">'123'</span>, text)</div></pre></td></tr></table></figure>
+<h3 id="5-正则表达式一图流"><a href="#5-正则表达式一图流" class="headerlink" title="5.正则表达式一图流"></a>5.正则表达式一图流</h3><p><img src="http://images.cnblogs.com/cnblogs_com/huxi/Windows-Live-Writer/Python_10A67/pyre_ebb9ce1c-e5e8-4219-a8ae-7ee620d5f9f1.png" alt=""></p>
+<h3 id="6-Acknowledment"><a href="#6-Acknowledment" class="headerlink" title="6. Acknowledment"></a>6. Acknowledment</h3><ol>
+<li><p><a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html" target="_blank" rel="external">Python正则表达式指南</a></p>
+</li>
+<li><p><a href="http://wiki.ubuntu.org.cn/Python正则表达式操作指南" target="_blank" rel="external">Python正则表达式操作指南</a></p>
+<p>​</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>打赏作者一个苹果</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.png" alt="Ramon WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="Ramon Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/正则表达式/" rel="tag">#正则表达式</a>
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/17/full-width-half-width-converting-Python/" rel="next" title="全角半角相互转换（Python）">
+                <i class="fa fa-chevron-left"></i> 全角半角相互转换（Python）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/10/21/regex-primer/"
+     data-title="正则表达式入门"
+     data-content=""
+     data-url="http://ramonyeung.github.io/2016/10/21/regex-primer/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/21/regex-primer/"
+           data-title="正则表达式入门" data-url="http://ramonyeung.github.io/2016/10/21/regex-primer/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Ramon" />
+          <p class="site-author-name" itemprop="name">Ramon</p>
+          <p class="site-description motion-element" itemprop="description">Life is too short to live.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/RamonYeung" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005051995474551/home?from=page_100505&mod=TAB&is_all=1#place" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yang-hai-hong" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-paper-plane"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://cosmochan.com/" title="Cosmo" target="_blank">Cosmo</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-读者须知"><span class="nav-text">1. 读者须知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-简介"><span class="nav-text">2. 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-regex相关概念"><span class="nav-text">3. regex相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-字符集"><span class="nav-text">3.1 字符集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-数量词"><span class="nav-text">3.2 数量词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-贪婪模式"><span class="nav-text">3.3 贪婪模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-转义"><span class="nav-text">3.4 转义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-re模块简介"><span class="nav-text">4. re模块简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-re-compile-pattern-flags-0"><span class="nav-text">4.1 re.compile(pattern, flags=0)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-re-match-pattern-string-flags-0"><span class="nav-text">4.2 re.match(pattern, string, flags=0)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-re-sub-pattern-repl-string-count-0-flags-0"><span class="nav-text">4.3 re.sub(pattern, repl, string, count=0, flags=0)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-正则表达式一图流"><span class="nav-text">5.正则表达式一图流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Acknowledment"><span class="nav-text">6. Acknowledment</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ramon</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ramonyeung"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("nVVjKJVGCf28MrYmAnpIpYML-gzGzoHsz", "lCmb4ICTe8cn5lXCexggVhyn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
