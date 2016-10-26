@@ -248,6 +248,129 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/26/Handling-EOF-inside-string-starting-at-line-X-while-using-pandas.read_csv()/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-26T19:30:49+08:00" content="2016-10-26">
+              2016-10-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/26/Handling-EOF-inside-string-starting-at-line-X-while-using-pandas.read_csv()/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/26/Handling-EOF-inside-string-starting-at-line-X-while-using-pandas.read_csv()/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/26/Handling-EOF-inside-string-starting-at-line-X-while-using-pandas.read_csv()/" class="leancloud_visitors" data-flag-title="">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>title: Handling “EOF inside string starting at line X” while using pandas.read_csv()<br>date: 2016-10-26 19:31:37<br>tags: [Python]</p>
+<h3 id="1-The-story-about-this-error"><a href="#1-The-story-about-this-error" class="headerlink" title="1. The story about this error."></a>1. The story about this error.</h3><p>The sky is a little grey today because the program I wrote throwing a strange error. And It takes me couple hours to figure out.</p>
+<p>Error <code>&quot;EOF inside string starting at line X&quot;</code> occurs while I was using maybe the best file-reading function in our world, <code>pandas.read_csv(…)</code>.</p>
+<p>What I saw back then, there is only a chinese character at line X and I can not find any <code>EOF</code> in any where but the end of file(of course there is one).</p>
+<p>At first, I thought the encoding of file may have the responsibility in this issue since the file is full of chinese character and Python 2.7 is really not good at handling it.</p>
+<p>After being strictly checked over and over again, it turns out to be, there is <strong>one duoble quotation mark <code>(&quot;)</code> at the next line</strong>. And I think the <code>pd.read_csv()</code> function was expecting second double quotation mark to make himself complete as his priority,  ignoring every <code>column delimiter</code> and <code>End of File</code>, and, unfortunately, reached the very end of this file.</p>
+<p>Therefore, we got an error “EOF inside string”.</p>
+<h3 id="2-The-solution-to-this-error"><a href="#2-The-solution-to-this-error" class="headerlink" title="2. The solution to this error"></a>2. The solution to this error</h3><p>Simply adding the option <code>quoting=csv.QUOTE_NONE</code> of <code>pandas.read_csv(…)</code>.</p>
+<p>For my case, the solution goes as: </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df = pd.read_csv(f, delimiter=<span class="string">'\n'</span>, header=<span class="keyword">None</span>, encoding=<span class="string">'utf-8'</span>, quoting=csv.QUOTE_NONE)</div></pre></td></tr></table></figure>
+<h3 id="3-Acknowledgment"><a href="#3-Acknowledgment" class="headerlink" title="3. Acknowledgment"></a>3. Acknowledgment</h3><ol>
+<li><a href="https://github.com/pandas-dev/pandas/issues/5500" target="_blank" rel="external">Discuss on GitHub issue</a></li>
+<li><a href="http://stackoverflow.com/questions/27158922/read-csv-eof-character-in-string-cause-parsing-issue" target="_blank" rel="external">Discuss on StackOverflow</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/23/data-graph-and-relationship-mining/" itemprop="url">
                   什么是知识图谱
                 </a>
@@ -1274,7 +1397,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
