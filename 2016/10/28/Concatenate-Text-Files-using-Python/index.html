@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be f">
+<meta name="description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be fi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Concatenate Text Files using Python">
 <meta property="og:url" content="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/index.html">
 <meta property="og:site_name" content="O'Ramon Lab">
-<meta property="og:description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be f">
-<meta property="og:updated_time" content="2016-10-28T05:37:14.137Z">
+<meta property="og:description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be fi">
+<meta property="og:updated_time" content="2016-10-28T06:31:29.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Concatenate Text Files using Python">
-<meta name="twitter:description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be f">
+<meta name="twitter:description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be fi">
 
 
 
@@ -307,8 +307,8 @@
       
 
       
-        <a id="more"></a>
-<p>I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be filed in txt format for each year because storing files with large amounts of words and sentences will be time-consuming. And I do not want it to stop in the middle of process.</p>
+        <p>I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be filed in txt format for each year because storing files with large amounts of words and sentences will be time-consuming. And I do not want it to stop in the middle of process.</p>
+<a id="more"></a>
 <p>This is why I need to concatenate text files after finishing all the processes. Google tells me there is a question about this topic on <a href="http://stackoverflow.com/questions/13613336/python-concatenate-text-files" target="_blank" rel="external">Stack Overflow</a>. </p>
 <p>And here goes code.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> copyfileobj <span class="keyword">as</span> cpobj</div><div class="line"><span class="keyword">with</span> open(<span class="string">'output_file.txt'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> ofd:</div><div class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> [<span class="string">'seg1.txt'</span>,<span class="string">'seg2.txt'</span>,<span class="string">'seg3.txt'</span>]:</div><div class="line">        <span class="keyword">with</span> open(f,<span class="string">'rb'</span>) <span class="keyword">as</span> ifd:</div><div class="line">            cpobj(ifd, ofd, <span class="number">1024</span>*<span class="number">1024</span>*<span class="number">10</span>)</div><div class="line">            <span class="comment"># 10MB per writing chunk </span></div><div class="line">            <span class="comment"># to avoid reading big file into memory at once.</span></div></pre></td></tr></table></figure>

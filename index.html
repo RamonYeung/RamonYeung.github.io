@@ -307,24 +307,12 @@
 
       
         
-          
-            <a id="more"></a>
-<p>I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be filed in txt format for each year because storing files with large amounts of words and sentences will be time-consuming. And I do not want it to stop in the middle of process.</p>
-<p>This is why I need to concatenate text files after finishing all the processes. Google tells me there is a question about this topic on <a href="http://stackoverflow.com/questions/13613336/python-concatenate-text-files" target="_blank" rel="external">Stack Overflow</a>. </p>
-<p>And here goes code.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> copyfileobj <span class="keyword">as</span> cpobj</div><div class="line"><span class="keyword">with</span> open(<span class="string">'output_file.txt'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> ofd:</div><div class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> [<span class="string">'seg1.txt'</span>,<span class="string">'seg2.txt'</span>,<span class="string">'seg3.txt'</span>]:</div><div class="line">        <span class="keyword">with</span> open(f,<span class="string">'rb'</span>) <span class="keyword">as</span> ifd:</div><div class="line">            cpobj(ifd, ofd, <span class="number">1024</span>*<span class="number">1024</span>*<span class="number">10</span>)</div><div class="line">            <span class="comment"># 10MB per writing chunk </span></div><div class="line">            <span class="comment"># to avoid reading big file into memory at once.</span></div></pre></td></tr></table></figure>
-<p>Unfortuantely, the best answer provided by Meow does not score highest(only 38).</p>
-<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><ol>
-<li><p><a href="https://docs.python.org/2/library/shutil.html" target="_blank" rel="external">shutil - High-level file operations</a></p>
-</li>
-<li><p>UNIX Command is our good friend.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat file1 file2 file3 &gt; bigfile</div></pre></td></tr></table></figure>
-</li>
-<li><p>Use <code>file.read(65536)</code> to read 64k of data at a time, rather than iterating through the files with <code>for</code>.</p>
-</li>
-</ol>
-
-          
+          <p>I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be filed in txt format for each year because storing files with large amounts of words and sentences will be time-consuming. And I do not want it to stop in the middle of process.</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/28/Concatenate-Text-Files-using-Python/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -431,23 +419,12 @@
 
       
         
-          
-            <a id="more"></a>
-<h3 id="1-The-story-about-this-error"><a href="#1-The-story-about-this-error" class="headerlink" title="1. The story about this error."></a>1. The story about this error.</h3><p>The sky is a little grey today because the program I wrote throwing a strange error. And It takes me couple hours to figure out.</p>
-<p>Error <code>&quot;EOF inside string starting at line X&quot;</code> occurs while I was using maybe the best file-reading function in our world, <code>pandas.read_csv(…)</code>.</p>
-<p>What I saw back then, there is only a chinese character at line X and I can not find any <code>EOF</code> in any where but the end of file(of course there is one).</p>
-<p>At first, I thought the encoding of file may have the responsibility in this issue since the file is full of chinese character and Python 2.7 is really not good at handling it.</p>
-<p>After being strictly checked over and over again, it turns out to be, there is <strong>one duoble quotation mark <code>(&quot;)</code> at the next line</strong>. And I think the <code>pd.read_csv()</code> function was expecting second double quotation mark to make himself complete as his priority,  ignoring every <code>column delimiter</code> and <code>End of File</code>, and, unfortunately, reached the very end of this file.</p>
-<p>Therefore, we got an error “EOF inside string”.</p>
-<h3 id="2-The-solution-to-this-error"><a href="#2-The-solution-to-this-error" class="headerlink" title="2. The solution to this error"></a>2. The solution to this error</h3><p>Simply adding the option <code>quoting=csv.QUOTE_NONE</code> of <code>pandas.read_csv(…)</code>.</p>
-<p>For my case, the solution goes as: </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df = pd.read_csv(f, delimiter=<span class="string">'\n'</span>, header=<span class="keyword">None</span>, encoding=<span class="string">'utf-8'</span>, quoting=csv.QUOTE_NONE)</div></pre></td></tr></table></figure>
-<h3 id="3-Acknowledgment"><a href="#3-Acknowledgment" class="headerlink" title="3. Acknowledgment"></a>3. Acknowledgment</h3><ol>
-<li><a href="https://github.com/pandas-dev/pandas/issues/5500" target="_blank" rel="external">Discuss on GitHub issue</a></li>
-<li><a href="http://stackoverflow.com/questions/27158922/read-csv-eof-character-in-string-cause-parsing-issue" target="_blank" rel="external">Discuss on StackOverflow</a></li>
-</ol>
-
-          
+          <p> The sky is a little grey today because the program I wrote throwing a strange error. And It takes me couple hours to figure out.</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/26/Handling-EOF-inside-string-starting-at-line-X-while-using-pandas.read_csv()/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
