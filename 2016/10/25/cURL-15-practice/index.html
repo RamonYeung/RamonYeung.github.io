@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="文件处理,Python," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,16 +84,25 @@
 
 
 
-<meta name="description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be fi">
+<meta name="description" content="1. Dowanload a Single FileThe following command will get the content and display it on your terminal.
+1curl http://www.centos.org
+To store the output in a file: 
+1curl http://www.centos.org &amp;gt; cent">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Concatenate Text Files using Python">
-<meta property="og:url" content="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/index.html">
+<meta property="og:title" content="practicing cURL with 15 examples">
+<meta property="og:url" content="http://ramonyeung.github.io/2016/10/25/cURL-15-practice/index.html">
 <meta property="og:site_name" content="O'Ramon Lab">
-<meta property="og:description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be fi">
-<meta property="og:updated_time" content="2016-10-28T06:31:29.741Z">
+<meta property="og:description" content="1. Dowanload a Single FileThe following command will get the content and display it on your terminal.
+1curl http://www.centos.org
+To store the output in a file: 
+1curl http://www.centos.org &amp;gt; cent">
+<meta property="og:updated_time" content="2016-10-28T07:12:05.849Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Concatenate Text Files using Python">
-<meta name="twitter:description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be fi">
+<meta name="twitter:title" content="practicing cURL with 15 examples">
+<meta name="twitter:description" content="1. Dowanload a Single FileThe following command will get the content and display it on your terminal.
+1curl http://www.centos.org
+To store the output in a file: 
+1curl http://www.centos.org &amp;gt; cent">
 
 
 
@@ -114,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/"/>
+  <link rel="canonical" href="http://ramonyeung.github.io/2016/10/25/cURL-15-practice/"/>
 
-  <title> Concatenate Text Files using Python | O'Ramon Lab </title>
+  <title> practicing cURL with 15 examples | O'Ramon Lab </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -246,7 +255,7 @@
             
             
               
-                Concatenate Text Files using Python
+                practicing cURL with 15 examples
               
             
           </h1>
@@ -258,8 +267,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-28T13:30:30+08:00" content="2016-10-28">
-              2016-10-28
+            <time itemprop="dateCreated" datetime="2016-10-25T13:30:30+08:00" content="2016-10-25">
+              2016-10-25
             </time>
           </span>
 
@@ -269,8 +278,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/28/Concatenate-Text-Files-using-Python/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/Concatenate-Text-Files-using-Python/" itemprop="commentsCount"></span>
+                <a href="/2016/10/25/cURL-15-practice/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/25/cURL-15-practice/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -280,7 +289,7 @@
 
           
           
-             <span id="/2016/10/28/Concatenate-Text-Files-using-Python/" class="leancloud_visitors" data-flag-title="Concatenate Text Files using Python">
+             <span id="/2016/10/25/cURL-15-practice/" class="leancloud_visitors" data-flag-title="practicing cURL with 15 examples">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -307,21 +316,29 @@
       
 
       
-        <p>I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be filed in txt format for each year because storing files with large amounts of words and sentences will be time-consuming. And I do not want it to stop in the middle of process.</p>
-<a id="more"></a>
-<p>This is why I need to concatenate text files after finishing all the processes. Google tells me there is a question about this topic on <a href="http://stackoverflow.com/questions/13613336/python-concatenate-text-files" target="_blank" rel="external">Stack Overflow</a>. </p>
-<p>And here goes code.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> copyfileobj <span class="keyword">as</span> cpobj</div><div class="line"><span class="keyword">with</span> open(<span class="string">'output_file.txt'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> ofd:</div><div class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> [<span class="string">'seg1.txt'</span>,<span class="string">'seg2.txt'</span>,<span class="string">'seg3.txt'</span>]:</div><div class="line">        <span class="keyword">with</span> open(f,<span class="string">'rb'</span>) <span class="keyword">as</span> ifd:</div><div class="line">            cpobj(ifd, ofd, <span class="number">1024</span>*<span class="number">1024</span>*<span class="number">10</span>)</div><div class="line">            <span class="comment"># 10MB per writing chunk </span></div><div class="line">            <span class="comment"># to avoid reading big file into memory at once.</span></div></pre></td></tr></table></figure>
-<p>Unfortuantely, the best answer provided by Meow does not score highest(only 38).</p>
-<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><ol>
-<li><p><a href="https://docs.python.org/2/library/shutil.html" target="_blank" rel="external">shutil - High-level file operations</a></p>
-</li>
-<li><p>UNIX Command is our good friend.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat file1 file2 file3 &gt; bigfile</div></pre></td></tr></table></figure>
-</li>
-<li><p>Use <code>file.read(65536)</code> to read 64k of data at a time, rather than iterating through the files with <code>for</code>.</p>
-</li>
-</ol>
+        <a id="more"></a>
+<h3 id="1-Dowanload-a-Single-File"><a href="#1-Dowanload-a-Single-File" class="headerlink" title="1. Dowanload a Single File"></a>1. Dowanload a Single File</h3><p>The following command will get the content and display it on your terminal.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl http://www.centos.org</div></pre></td></tr></table></figure>
+<p>To store the output in a file: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl http://www.centos.org &gt; centos-org.html</div></pre></td></tr></table></figure>
+<h3 id="2-Save-the-cURL-Output-to-a-file"><a href="#2-Save-the-cURL-Output-to-a-file" class="headerlink" title="2. Save the cURL Output to a file"></a>2. Save the cURL Output to a file</h3><ul>
+<li>-o : saved filename provided in the command line.</li>
+<li>-O : the filename in the URL will be taken.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">curl -o mygettext.html http://www.gnu.org/gettext.html</div><div class="line"></div><div class="line">curl -O http://www.gnu.org/gettext.html</div></pre></td></tr></table></figure>
+<h3 id="3-Fetch-Multiple-File-at-a-time"><a href="#3-Fetch-Multiple-File-at-a-time" class="headerlink" title="3. Fetch Multiple File at a time"></a>3. Fetch Multiple File at a time</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -O URL1 -O URL2</div></pre></td></tr></table></figure>
+<h3 id="4-Follow-HTTP-location-Headers-with-L-option"><a href="#4-Follow-HTTP-location-Headers-with-L-option" class="headerlink" title="4. Follow HTTP location Headers with -L option"></a>4. Follow HTTP location Headers with -L option</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">curl http://www.google.com</div><div class="line"></div><div class="line">&lt;TITLE&gt;302 Moved&lt;/TITLE&gt;</div><div class="line">&lt;H1&gt;302 Moved&lt;/H1&gt;</div><div class="line">The document has moved</div><div class="line">&lt;A HREF=&quot;http://www.google.co.in/&quot;&gt;here&lt;/A&gt;</div><div class="line"></div><div class="line"># so we change this command a little bit.</div><div class="line">curl -L http://www.google.com</div></pre></td></tr></table></figure>
+<h3 id="5-Continue-Resume-a-Previous-Download"><a href="#5-Continue-Resume-a-Previous-Download" class="headerlink" title="5. Continue/Resume a Previous Download"></a>5. Continue/Resume a Previous Download</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">curl -O http://www.gnu.org/gettext.html</div><div class="line"></div><div class="line">curl -C - -O http://www.gnu.org/gettext.html</div></pre></td></tr></table></figure>
+<h3 id="6-Limit-the-Rate-of-Data-Transfer"><a href="#6-Limit-the-Rate-of-Data-Transfer" class="headerlink" title="6. Limit the Rate of Data Transfer"></a>6. Limit the Rate of Data Transfer</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl --limit-rate 1000B -O http://www.gnu.org/gettext.html</div></pre></td></tr></table></figure>
+<h3 id="7-Download-a-file-only-if-it-is-modified-before-after-the-given-time"><a href="#7-Download-a-file-only-if-it-is-modified-before-after-the-given-time" class="headerlink" title="7. Download a file only if it is modified before/after the given time."></a>7. Download a file only if it is modified before/after the given time.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -z 21-Dec-11 http://www.example.com/yy.html</div></pre></td></tr></table></figure>
+<h3 id="8-Pass-HTTP-Authentication-in-cURL"><a href="#8-Pass-HTTP-Authentication-in-cURL" class="headerlink" title="8. Pass HTTP Authentication in cURL"></a>8. Pass HTTP Authentication in cURL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -u username:password URL</div></pre></td></tr></table></figure>
+<h3 id="9-Download-Files-from-FTP-server"><a href="#9-Download-Files-from-FTP-server" class="headerlink" title="9. Download Files from FTP server"></a>9. Download Files from <a href="http://www.thegeekstuff.com/2010/06/ftp-sftp-tutorial/" target="_blank" rel="external">FTP</a> server</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -u ftpuser:ftppass -O ftp://ftp_server/public_html/xss.php</div></pre></td></tr></table></figure>
+<h3 id="10-List-Download-using-Ranges"><a href="#10-List-Download-using-Ranges" class="headerlink" title="10. List/Download using Ranges"></a>10. List/Download using Ranges</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl   ftp://ftp.uk.debian.org/debian/pool/main/[a-z]/</div></pre></td></tr></table></figure>
+<h3 id="11-Upload-Files-to-FTP-Server"><a href="#11-Upload-Files-to-FTP-Server" class="headerlink" title="11. Upload Files to FTP Server"></a>11. Upload Files to FTP Server</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -u ftpuser:ftppass -T myfile.txt ftp://ftp.testserver.com</div></pre></td></tr></table></figure>
+<h3 id="12-More-Information-using-Verbose-and-Trace-Option"><a href="#12-More-Information-using-Verbose-and-Trace-Option" class="headerlink" title="12. More Information using Verbose and Trace Option"></a>12. More Information using Verbose and Trace Option</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -v http://google.co.in</div></pre></td></tr></table></figure>
+<h3 id="13-Get-Definition-of-a-Word-using-DICT-Protocol"><a href="#13-Get-Definition-of-a-Word-using-DICT-Protocol" class="headerlink" title="13. Get Definition of a Word using DICT Protocol"></a>13. Get Definition of a Word using DICT Protocol</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl dict://dict.org/d:bash</div></pre></td></tr></table></figure>
+<h3 id="14-Use-Proxy-to-Download-a-File"><a href="#14-Use-Proxy-to-Download-a-File" class="headerlink" title="14. Use Proxy to Download a File"></a>14. Use Proxy to Download a File</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -x proxysever.test.com:3128 http://google.co.in</div></pre></td></tr></table></figure>
+<h3 id="15-Send-Mail-using-SMTP-Protocol"><a href="#15-Send-Mail-using-SMTP-Protocol" class="headerlink" title="15. Send Mail using SMTP Protocol"></a>15. Send Mail using SMTP Protocol</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl --mail-from blah@test.com --mail-rcpt foo@test.com smtp://mailserver.com</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -363,29 +380,21 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/文件处理/" rel="tag">#文件处理</a>
-          
-            <a href="/tags/Python/" rel="tag">#Python</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/26/Handling-EOF-inside-string-starting-at-line-X-while-using-pandas.read_csv()/" rel="next" title="Handling "EOF inside string at line X" while using pandas.read_csv()">
-                <i class="fa fa-chevron-left"></i> Handling "EOF inside string at line X" while using pandas.read_csv()
+              <a href="/2016/10/23/data-graph-and-relationship-mining/" rel="next" title="什么是知识图谱">
+                <i class="fa fa-chevron-left"></i> 什么是知识图谱
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/28/How-does-Multiple-Assigment-Work-Internally/" rel="prev" title="How-does-Multiple-Assigment-Work-Internally">
-                How-does-Multiple-Assigment-Work-Internally <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/26/Handling-EOF-inside-string-starting-at-line-X-while-using-pandas.read_csv()/" rel="prev" title="Handling "EOF inside string at line X" while using pandas.read_csv()">
+                Handling "EOF inside string at line X" while using pandas.read_csv() <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -401,10 +410,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/10/28/Concatenate-Text-Files-using-Python/"
-     data-title="Concatenate Text Files using Python"
+        <div class="ds-share flat" data-thread-key="2016/10/25/cURL-15-practice/"
+     data-title="practicing cURL with 15 examples"
      data-content=""
-     data-url="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/">
+     data-url="http://ramonyeung.github.io/2016/10/25/cURL-15-practice/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -431,8 +440,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/28/Concatenate-Text-Files-using-Python/"
-           data-title="Concatenate Text Files using Python" data-url="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/">
+      <div class="ds-thread" data-thread-key="2016/10/25/cURL-15-practice/"
+           data-title="practicing cURL with 15 examples" data-url="http://ramonyeung.github.io/2016/10/25/cURL-15-practice/">
       </div>
     
   </div>
@@ -559,7 +568,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notes"><span class="nav-text">Notes</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Dowanload-a-Single-File"><span class="nav-text">1. Dowanload a Single File</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Save-the-cURL-Output-to-a-file"><span class="nav-text">2. Save the cURL Output to a file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Fetch-Multiple-File-at-a-time"><span class="nav-text">3. Fetch Multiple File at a time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Follow-HTTP-location-Headers-with-L-option"><span class="nav-text">4. Follow HTTP location Headers with -L option</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Continue-Resume-a-Previous-Download"><span class="nav-text">5. Continue/Resume a Previous Download</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Limit-the-Rate-of-Data-Transfer"><span class="nav-text">6. Limit the Rate of Data Transfer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Download-a-file-only-if-it-is-modified-before-after-the-given-time"><span class="nav-text">7. Download a file only if it is modified before/after the given time.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-Pass-HTTP-Authentication-in-cURL"><span class="nav-text">8. Pass HTTP Authentication in cURL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Download-Files-from-FTP-server"><span class="nav-text">9. Download Files from FTP server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-List-Download-using-Ranges"><span class="nav-text">10. List/Download using Ranges</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-Upload-Files-to-FTP-Server"><span class="nav-text">11. Upload Files to FTP Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-More-Information-using-Verbose-and-Trace-Option"><span class="nav-text">12. More Information using Verbose and Trace Option</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-Get-Definition-of-a-Word-using-DICT-Protocol"><span class="nav-text">13. Get Definition of a Word using DICT Protocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-Use-Proxy-to-Download-a-File"><span class="nav-text">14. Use Proxy to Download a File</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-Send-Mail-using-SMTP-Protocol"><span class="nav-text">15. Send Mail using SMTP Protocol</span></a></li></ol></div>
             
           </div>
         </section>

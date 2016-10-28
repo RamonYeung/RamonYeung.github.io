@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="文件处理,Python," />
+  <meta name="keywords" content="Python Tricks," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be fi">
+<meta name="description" content="Learning the pythonic way to code makes your code elegant and easy to understand. Since it’s a different coding style among other languages, coder like me should understand completely about the underl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Concatenate Text Files using Python">
-<meta property="og:url" content="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/index.html">
+<meta property="og:title" content="How-does-Multiple-Assigment-Work-Internally">
+<meta property="og:url" content="http://ramonyeung.github.io/2016/10/28/How-does-Multiple-Assigment-Work-Internally/index.html">
 <meta property="og:site_name" content="O'Ramon Lab">
-<meta property="og:description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be fi">
-<meta property="og:updated_time" content="2016-10-28T06:31:29.741Z">
+<meta property="og:description" content="Learning the pythonic way to code makes your code elegant and easy to understand. Since it’s a different coding style among other languages, coder like me should understand completely about the underl">
+<meta property="og:updated_time" content="2016-10-28T09:11:33.588Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Concatenate Text Files using Python">
-<meta name="twitter:description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be fi">
+<meta name="twitter:title" content="How-does-Multiple-Assigment-Work-Internally">
+<meta name="twitter:description" content="Learning the pythonic way to code makes your code elegant and easy to understand. Since it’s a different coding style among other languages, coder like me should understand completely about the underl">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/"/>
+  <link rel="canonical" href="http://ramonyeung.github.io/2016/10/28/How-does-Multiple-Assigment-Work-Internally/"/>
 
-  <title> Concatenate Text Files using Python | O'Ramon Lab </title>
+  <title> How-does-Multiple-Assigment-Work-Internally | O'Ramon Lab </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -246,7 +246,7 @@
             
             
               
-                Concatenate Text Files using Python
+                How-does-Multiple-Assigment-Work-Internally
               
             
           </h1>
@@ -258,7 +258,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-28T13:30:30+08:00" content="2016-10-28">
+            <time itemprop="dateCreated" datetime="2016-10-28T15:05:50+08:00" content="2016-10-28">
               2016-10-28
             </time>
           </span>
@@ -269,8 +269,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/28/Concatenate-Text-Files-using-Python/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/Concatenate-Text-Files-using-Python/" itemprop="commentsCount"></span>
+                <a href="/2016/10/28/How-does-Multiple-Assigment-Work-Internally/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/How-does-Multiple-Assigment-Work-Internally/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -280,7 +280,7 @@
 
           
           
-             <span id="/2016/10/28/Concatenate-Text-Files-using-Python/" class="leancloud_visitors" data-flag-title="Concatenate Text Files using Python">
+             <span id="/2016/10/28/How-does-Multiple-Assigment-Work-Internally/" class="leancloud_visitors" data-flag-title="How-does-Multiple-Assigment-Work-Internally">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -307,20 +307,32 @@
       
 
       
-        <p>I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be filed in txt format for each year because storing files with large amounts of words and sentences will be time-consuming. And I do not want it to stop in the middle of process.</p>
-<a id="more"></a>
-<p>This is why I need to concatenate text files after finishing all the processes. Google tells me there is a question about this topic on <a href="http://stackoverflow.com/questions/13613336/python-concatenate-text-files" target="_blank" rel="external">Stack Overflow</a>. </p>
-<p>And here goes code.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> copyfileobj <span class="keyword">as</span> cpobj</div><div class="line"><span class="keyword">with</span> open(<span class="string">'output_file.txt'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> ofd:</div><div class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> [<span class="string">'seg1.txt'</span>,<span class="string">'seg2.txt'</span>,<span class="string">'seg3.txt'</span>]:</div><div class="line">        <span class="keyword">with</span> open(f,<span class="string">'rb'</span>) <span class="keyword">as</span> ifd:</div><div class="line">            cpobj(ifd, ofd, <span class="number">1024</span>*<span class="number">1024</span>*<span class="number">10</span>)</div><div class="line">            <span class="comment"># 10MB per writing chunk </span></div><div class="line">            <span class="comment"># to avoid reading big file into memory at once.</span></div></pre></td></tr></table></figure>
-<p>Unfortuantely, the best answer provided by Meow does not score highest(only 38).</p>
-<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><ol>
-<li><p><a href="https://docs.python.org/2/library/shutil.html" target="_blank" rel="external">shutil - High-level file operations</a></p>
-</li>
-<li><p>UNIX Command is our good friend.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat file1 file2 file3 &gt; bigfile</div></pre></td></tr></table></figure>
-</li>
-<li><p>Use <code>file.read(65536)</code> to read 64k of data at a time, rather than iterating through the files with <code>for</code>.</p>
-</li>
+        <p>Learning the pythonic way to code makes your code elegant and easy to understand. Since it’s a different coding style among other languages, coder like me should understand completely about the underlying mechanism. In this post, we will talk about <code>multiple assignment</code>, a.k.a. <code>tuple assignment</code>.</p>
+<a id="more"></a> 
+<h3 id="1-Multiple-Assignment"><a href="#1-Multiple-Assignment" class="headerlink" title="1. Multiple Assignment"></a>1. Multiple Assignment</h3><p>As a reminder, we swap two variables by using the following line:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a, b = b, a</div></pre></td></tr></table></figure>
+<p>It’s definitely naturally and elegant. According to the <a href="https://docs.python.org/3/tutorial/introduction.html#first-steps-towards-programming" target="_blank" rel="external">doc</a>:</p>
+<blockquote>
+<ol>
+<li><code>a, b = b, a</code> demonstrates that the expressions on the right-hand side are all evaluated first before any of the assignments take place.</li>
+<li>The right-hand side expressions are evaluated from the left to the right.</li>
+</ol>
+</blockquote>
+<p>From above we can learn the basic principles of <code>multiple assignment</code>. Thus,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a, b = <span class="number">1</span>, <span class="number">3</span></div><div class="line">a, b = a+b, a</div><div class="line"><span class="comment"># will be functionally equivalent to ...</span></div><div class="line">a, b = <span class="number">1</span>+<span class="number">3</span>, <span class="number">1</span></div></pre></td></tr></table></figure>
+<h3 id="2-Tuple-Abbreviation"><a href="#2-Tuple-Abbreviation" class="headerlink" title="2. Tuple Abbreviation"></a>2. Tuple Abbreviation</h3><p>Python lets users abbreviate tuples. For example, <code>x = (1, 2)</code> can be written as <code>x = 1, 2</code>. So <code>multiple assignment</code> is just a special case of <code>tuple abbreviation</code>. Note that Python does not have a comma operator. I think it’s pretty convenient using multiple assignment with <code>tuple comprehensions</code>.  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a, b, c, d = (i*i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">7</span>) <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>)</div><div class="line"><span class="comment"># returns a=0, b=4, c=16, d=36</span></div></pre></td></tr></table></figure>
+<p>Also, remember to avoid error like “too many values to unpack”.</p>
+<p>What if, you want to see things going on internally? Using <code>dis</code> module can help us to find out!</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> dis</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(a, b)</span>:</span></div><div class="line"><span class="meta">... </span>    a, b = a+b, a</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>dis.dis(foo)</div></pre></td></tr></table></figure>
+<p>which returns:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; dis.dis(swap)</div><div class="line">  2           0 LOAD_FAST                1 (a)</div><div class="line">              3 LOAD_FAST                0 (b)</div><div class="line">              6 BINARY_ADD</div><div class="line">              7 LOAD_FAST           	 0 (a)</div><div class="line">             10 ROT_TWO					 </div><div class="line">             11 STORE_FAST               0 (a)</div><div class="line">             14 STORE_FAST               1 (b)</div><div class="line">             17 RETURN_VALUE</div></pre></td></tr></table></figure>
+<p>I think it explains everything itself. And it’s consist with the basic principles mentioned above.</p>
+<h3 id="3-Acknowledgment"><a href="#3-Acknowledgment" class="headerlink" title="3. Acknowledgment"></a>3. Acknowledgment</h3><ol>
+<li><a href="https://docs.python.org/3/tutorial/introduction.html#first-steps-towards-programming" target="_blank" rel="external">An Informal Introduction to Python</a></li>
+<li><a href="http://stackoverflow.com/questions/11502268/how-does-pythons-comma-operator-works-during-assignment" target="_blank" rel="external">http://stackoverflow.com/questions/11502268/how-does-pythons-comma-operator-works-during-assignment</a></li>
+<li><a href="http://stackoverflow.com/questions/21047524/how-does-swapping-of-members-in-the-python-tuples-a-b-b-a-work-internally" target="_blank" rel="external">http://stackoverflow.com/questions/21047524/how-does-swapping-of-members-in-the-python-tuples-a-b-b-a-work-internally</a></li>
+<li><a href="https://www.quora.com/How-does-Pythons-comma-operator-work-in-assignments-with-expressions" target="_blank" rel="external">https://www.quora.com/How-does-Pythons-comma-operator-work-in-assignments-with-expressions</a></li>
 </ol>
 
       
@@ -365,9 +377,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/文件处理/" rel="tag">#文件处理</a>
-          
-            <a href="/tags/Python/" rel="tag">#Python</a>
+            <a href="/tags/Python-Tricks/" rel="tag">#Python Tricks</a>
           
         </div>
       
@@ -376,17 +386,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/26/Handling-EOF-inside-string-starting-at-line-X-while-using-pandas.read_csv()/" rel="next" title="Handling "EOF inside string at line X" while using pandas.read_csv()">
-                <i class="fa fa-chevron-left"></i> Handling "EOF inside string at line X" while using pandas.read_csv()
+              <a href="/2016/10/28/Concatenate-Text-Files-using-Python/" rel="next" title="Concatenate Text Files using Python">
+                <i class="fa fa-chevron-left"></i> Concatenate Text Files using Python
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/28/How-does-Multiple-Assigment-Work-Internally/" rel="prev" title="How-does-Multiple-Assigment-Work-Internally">
-                How-does-Multiple-Assigment-Work-Internally <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -401,10 +407,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/10/28/Concatenate-Text-Files-using-Python/"
-     data-title="Concatenate Text Files using Python"
+        <div class="ds-share flat" data-thread-key="2016/10/28/How-does-Multiple-Assigment-Work-Internally/"
+     data-title="How-does-Multiple-Assigment-Work-Internally"
      data-content=""
-     data-url="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/">
+     data-url="http://ramonyeung.github.io/2016/10/28/How-does-Multiple-Assigment-Work-Internally/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -431,8 +437,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/28/Concatenate-Text-Files-using-Python/"
-           data-title="Concatenate Text Files using Python" data-url="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/">
+      <div class="ds-thread" data-thread-key="2016/10/28/How-does-Multiple-Assigment-Work-Internally/"
+           data-title="How-does-Multiple-Assigment-Work-Internally" data-url="http://ramonyeung.github.io/2016/10/28/How-does-Multiple-Assigment-Work-Internally/">
       </div>
     
   </div>
@@ -559,7 +565,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notes"><span class="nav-text">Notes</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Multiple-Assignment"><span class="nav-text">1. Multiple Assignment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Tuple-Abbreviation"><span class="nav-text">2. Tuple Abbreviation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Acknowledgment"><span class="nav-text">3. Acknowledgment</span></a></li></ol></div>
             
           </div>
         </section>
