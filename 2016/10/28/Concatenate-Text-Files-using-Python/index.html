@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="文件处理,Python," />
 
 
 
@@ -84,31 +84,16 @@
 
 
 
-<meta name="description" content="关于我处女座+左撇子…大四数学汪@华南师大…保研去浙大直博啦…研究大数据与知识图谱…
-希望能找到一份实习…
-最好是北上杭互联网公司的数据挖掘/机器学习算法方向….磨练自己，作出贡献。
-双手奉上个人简历
-关于Blog与各位有缘人分享所学所看所想所感。不保证原创，但保证质量。
-哦，对了，我还缺个苹果电脑。用了十几年的Windows，该踩的雷区都踩过了。为了提高学习&amp;amp;工作效率，正在攒钱买MacB">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://ramonyeung.github.io/about/index.html">
+<meta name="description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Concatenate Text Files using Python">
+<meta property="og:url" content="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/index.html">
 <meta property="og:site_name" content="O'Ramon Lab">
-<meta property="og:description" content="关于我处女座+左撇子…大四数学汪@华南师大…保研去浙大直博啦…研究大数据与知识图谱…
-希望能找到一份实习…
-最好是北上杭互联网公司的数据挖掘/机器学习算法方向….磨练自己，作出贡献。
-双手奉上个人简历
-关于Blog与各位有缘人分享所学所看所想所感。不保证原创，但保证质量。
-哦，对了，我还缺个苹果电脑。用了十几年的Windows，该踩的雷区都踩过了。为了提高学习&amp;amp;工作效率，正在攒钱买MacB">
-<meta property="og:updated_time" content="2016-10-07T08:36:33.138Z">
+<meta property="og:description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be f">
+<meta property="og:updated_time" content="2016-10-28T05:37:14.137Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="关于我处女座+左撇子…大四数学汪@华南师大…保研去浙大直博啦…研究大数据与知识图谱…
-希望能找到一份实习…
-最好是北上杭互联网公司的数据挖掘/机器学习算法方向….磨练自己，作出贡献。
-双手奉上个人简历
-关于Blog与各位有缘人分享所学所看所想所感。不保证原创，但保证质量。
-哦，对了，我还缺个苹果电脑。用了十几年的Windows，该踩的雷区都踩过了。为了提高学习&amp;amp;工作效率，正在攒钱买MacB">
+<meta name="twitter:title" content="Concatenate Text Files using Python">
+<meta name="twitter:description" content="I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be f">
 
 
 
@@ -129,15 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://ramonyeung.github.io/about/"/>
+  <link rel="canonical" href="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/"/>
 
-  <title>
-  
-
-  
-    about | O'Ramon Lab
-  
-</title>
+  <title> Concatenate Text Files using Python | O'Ramon Lab </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -158,7 +137,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,17 +227,196 @@
 
   <div id="posts" class="posts-expand">
     
-    
-      <h3 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h3><p>处女座+左撇子…大四数学汪@华南师大…保研去浙大直博啦…研究大数据与知识图谱…</p>
-<p>希望能找到一份实习…</p>
-<p>最好是北上杭互联网公司的数据挖掘/机器学习算法方向….磨练自己，作出贡献。</p>
-<p><a href="http://cv.qiaobutang.com/r/56cbc2290cf2af922994fa49" target="_blank" rel="external"><strong>双手奉上个人简历</strong></a></p>
-<h3 id="关于Blog"><a href="#关于Blog" class="headerlink" title="关于Blog"></a>关于Blog</h3><p>与各位有缘人分享所学所看所想所感。不保证原创，但保证质量。</p>
-<p>哦，对了，我还缺个苹果电脑。用了十几年的Windows，该踩的雷区都踩过了。为了提高学习&amp;工作效率，正在攒钱买<strong>MacBook Pro 13</strong>.</p>
-<p>你可以考虑帮助我完成<strong>【苹果计划】</strong>，你将会见证一个另类的众筹。如果你再问我，除此之外，你还能获得什么…</p>
-<p>—— 万一这是世界上<strong>“第四个伟大的苹果”</strong>呢~</p>
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Concatenate Text Files using Python
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T13:30:30+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/28/Concatenate-Text-Files-using-Python/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/Concatenate-Text-Files-using-Python/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/28/Concatenate-Text-Files-using-Python/" class="leancloud_visitors" data-flag-title="Concatenate Text Files using Python">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<p>I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be filed in txt format for each year because storing files with large amounts of words and sentences will be time-consuming. And I do not want it to stop in the middle of process.</p>
+<p>This is why I need to concatenate text files after finishing all the processes. Google tells me there is a question about this topic on <a href="http://stackoverflow.com/questions/13613336/python-concatenate-text-files" target="_blank" rel="external">Stack Overflow</a>. </p>
+<p>And here goes code.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> copyfileobj <span class="keyword">as</span> cpobj</div><div class="line"><span class="keyword">with</span> open(<span class="string">'output_file.txt'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> ofd:</div><div class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> [<span class="string">'seg1.txt'</span>,<span class="string">'seg2.txt'</span>,<span class="string">'seg3.txt'</span>]:</div><div class="line">        <span class="keyword">with</span> open(f,<span class="string">'rb'</span>) <span class="keyword">as</span> ifd:</div><div class="line">            cpobj(ifd, ofd, <span class="number">1024</span>*<span class="number">1024</span>*<span class="number">10</span>)</div><div class="line">            <span class="comment"># 10MB per writing chunk </span></div><div class="line">            <span class="comment"># to avoid reading big file into memory at once.</span></div></pre></td></tr></table></figure>
+<p>Unfortuantely, the best answer provided by Meow does not score highest(only 38).</p>
+<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><ol>
+<li><p><a href="https://docs.python.org/2/library/shutil.html" target="_blank" rel="external">shutil - High-level file operations</a></p>
+</li>
+<li><p>UNIX Command is our good friend.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat file1 file2 file3 &gt; bigfile</div></pre></td></tr></table></figure>
+</li>
+<li><p>Use <code>file.read(65536)</code> to read 64k of data at a time, rather than iterating through the files with <code>for</code>.</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>打赏作者一个苹果</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.png" alt="Ramon WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="Ramon Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/文件处理/" rel="tag">#文件处理</a>
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/26/Handling-EOF-inside-string-starting-at-line-X-while-using-pandas.read_csv()/" rel="next" title="Handling "EOF inside string at line X" while using pandas.read_csv()">
+                <i class="fa fa-chevron-left"></i> Handling "EOF inside string at line X" while using pandas.read_csv()
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/10/28/Concatenate-Text-Files-using-Python/"
+     data-title="Concatenate Text Files using Python"
+     data-content=""
+     data-url="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
   </div>
 
 
@@ -269,8 +427,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="about/index.html"
-           data-title="about" data-url="http://ramonyeung.github.io/about/index.html">
+      <div class="ds-thread" data-thread-key="2016/10/28/Concatenate-Text-Files-using-Python/"
+           data-title="Concatenate Text Files using Python" data-url="http://ramonyeung.github.io/2016/10/28/Concatenate-Text-Files-using-Python/">
       </div>
     
   </div>
@@ -294,8 +452,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -381,6 +548,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notes"><span class="nav-text">Notes</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -493,6 +671,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

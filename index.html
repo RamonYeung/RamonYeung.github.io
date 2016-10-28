@@ -248,6 +248,130 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/28/Concatenate-Text-Files-using-Python/" itemprop="url">
+                  Concatenate Text Files using Python
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T13:30:30+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/28/Concatenate-Text-Files-using-Python/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/Concatenate-Text-Files-using-Python/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/28/Concatenate-Text-Files-using-Python/" class="leancloud_visitors" data-flag-title="Concatenate Text Files using Python">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<p>I am recently processing the natural language(Chinese specially).  In the very begining, the 5-year Weibo corpus database is quite dirty. After using Python to perform data cleaning, it needs to be filed in txt format for each year because storing files with large amounts of words and sentences will be time-consuming. And I do not want it to stop in the middle of process.</p>
+<p>This is why I need to concatenate text files after finishing all the processes. Google tells me there is a question about this topic on <a href="http://stackoverflow.com/questions/13613336/python-concatenate-text-files" target="_blank" rel="external">Stack Overflow</a>. </p>
+<p>And here goes code.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> copyfileobj <span class="keyword">as</span> cpobj</div><div class="line"><span class="keyword">with</span> open(<span class="string">'output_file.txt'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> ofd:</div><div class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> [<span class="string">'seg1.txt'</span>,<span class="string">'seg2.txt'</span>,<span class="string">'seg3.txt'</span>]:</div><div class="line">        <span class="keyword">with</span> open(f,<span class="string">'rb'</span>) <span class="keyword">as</span> ifd:</div><div class="line">            cpobj(ifd, ofd, <span class="number">1024</span>*<span class="number">1024</span>*<span class="number">10</span>)</div><div class="line">            <span class="comment"># 10MB per writing chunk </span></div><div class="line">            <span class="comment"># to avoid reading big file into memory at once.</span></div></pre></td></tr></table></figure>
+<p>Unfortuantely, the best answer provided by Meow does not score highest(only 38).</p>
+<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><ol>
+<li><p><a href="https://docs.python.org/2/library/shutil.html" target="_blank" rel="external">shutil - High-level file operations</a></p>
+</li>
+<li><p>UNIX Command is our good friend.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat file1 file2 file3 &gt; bigfile</div></pre></td></tr></table></figure>
+</li>
+<li><p>Use <code>file.read(65536)</code> to read 64k of data at a time, rather than iterating through the files with <code>for</code>.</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/26/Handling-EOF-inside-string-starting-at-line-X-while-using-pandas.read_csv()/" itemprop="url">
                   Handling "EOF inside string at line X" while using pandas.read_csv()
                 </a>
@@ -308,7 +432,8 @@
       
         
           
-            <h3 id="1-The-story-about-this-error"><a href="#1-The-story-about-this-error" class="headerlink" title="1. The story about this error."></a>1. The story about this error.</h3><p>The sky is a little grey today because the program I wrote throwing a strange error. And It takes me couple hours to figure out.</p>
+            <a id="more"></a>
+<h3 id="1-The-story-about-this-error"><a href="#1-The-story-about-this-error" class="headerlink" title="1. The story about this error."></a>1. The story about this error.</h3><p>The sky is a little grey today because the program I wrote throwing a strange error. And It takes me couple hours to figure out.</p>
 <p>Error <code>&quot;EOF inside string starting at line X&quot;</code> occurs while I was using maybe the best file-reading function in our world, <code>pandas.read_csv(…)</code>.</p>
 <p>What I saw back then, there is only a chinese character at line X and I can not find any <code>EOF</code> in any where but the end of file(of course there is one).</p>
 <p>At first, I thought the encoding of file may have the responsibility in this issue since the file is full of chinese character and Python 2.7 is really not good at handling it.</p>
@@ -653,24 +778,12 @@
 
       
         
-          
-            <p>最近在学习自然语言处理，首要的问题是微博中文分词。我遇到了一个麻烦，就是全角（full-width）半角（half-width）的相互转换。</p>
-<p>其实思路也是很简单的，学习C++的时候都写过根据ASCII码转换英文大小写的函数。</p>
-<ul>
-<li>全角字符Unicode编码为65281 ~ 65374，对应的十六进制为0xFF01 ~ 0xFF5E。</li>
-<li>半角字符Unicode编码为33~126，对应的十六进制为0x21 ~ 0x7E。</li>
-<li>空格是特例，全角为12288（0x3000），半角为32（0x20）。</li>
-</ul>
-<p>从上面的规则可以看出，除空格外，半角符号+65248（0xfee0）=对应的全角符号。</p>
-<p>Talk is cheap, show you the code：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">full2half_width</span><span class="params">(ustr)</span>:</span></div><div class="line">    <span class="comment"># print type(ustr)  &gt;&gt;&gt; "unicode"</span></div><div class="line">    half = <span class="string">''</span></div><div class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> ustr:</div><div class="line">        num = ord(u)</div><div class="line">        <span class="keyword">if</span> num == <span class="number">0x3000</span>:    <span class="comment"># 全角空格变半角</span></div><div class="line">            num = <span class="number">32</span></div><div class="line">            <span class="keyword">print</span> <span class="string">'Found something.'</span></div><div class="line">        <span class="keyword">elif</span> <span class="number">0xFF01</span> &lt;= num &lt;= <span class="number">0xFF5E</span>:</div><div class="line">            num -= <span class="number">0xfee0</span></div><div class="line">        u = unichr(num)    <span class="comment"># to unicode</span></div><div class="line">        half += u</div><div class="line">    <span class="keyword">return</span> half</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">half2full_width</span><span class="params">(ustr)</span>:</span></div><div class="line">    <span class="comment"># print type(ustr)  &gt;&gt;&gt; "unicode"</span></div><div class="line">    full = <span class="string">''</span></div><div class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> ustr:</div><div class="line">        num = ord(u)</div><div class="line">        <span class="keyword">if</span> num == <span class="number">32</span>:    <span class="comment"># 半角空格变全角</span></div><div class="line">            num = <span class="number">0x3000</span></div><div class="line">            <span class="keyword">print</span> <span class="string">'Found something.'</span></div><div class="line">        <span class="keyword">elif</span> <span class="number">0x21</span> &lt;= num &lt;= <span class="number">0x7E</span>:</div><div class="line">            num += <span class="number">0xfee0</span></div><div class="line">        u = unichr(num)    <span class="comment"># to unicode</span></div><div class="line">        full += u</div><div class="line">    <span class="keyword">return</span> full</div></pre></td></tr></table></figure>
-<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><ul>
-<li>ord() 接受长度为1的字符串作为参数，返回对应的Unicode数值。</li>
-<li>unichr() 反之</li>
-</ul>
-
-          
+          <p>最近在学习自然语言处理，首要的问题是微博中文分词。我遇到了一个麻烦，就是全角（full-width）半角（half-width）的相互转换。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/17/full-width-half-width-converting-Python/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1214,121 +1327,8 @@
       
         
           
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/06/parameters-tuning-in-XGBoost/" itemprop="url">
-                  XGBoost完全调参指南(Python)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-06T23:48:21+08:00" content="2016-10-06">
-              2016-10-06
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/06/parameters-tuning-in-XGBoost/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/06/parameters-tuning-in-XGBoost/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
-
-          
-
-          
-          
-             <span id="/2016/10/06/parameters-tuning-in-XGBoost/" class="leancloud_visitors" data-flag-title="XGBoost完全调参指南(Python)">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>花了三四天学习XGBoost，这篇<a href="http://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/">文章</a>教会了我如何调参。我把文章的主要内容作翻译和摘录，也算是为XGboost中文社区贡献一份资源。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/06/parameters-tuning-in-XGBoost/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
         
       
     </div>
@@ -1358,6 +1358,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1396,7 +1400,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1406,7 +1410,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
