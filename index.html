@@ -307,41 +307,12 @@
 
       
         
-          
-            <p>拥有自己的个人天地是一件很酷的事情，你可以记录任何你想要记录的事情，甚至与他人分享你的经验、知识或见解。选择GitHub Pages + Hexo服务能够让你更加多样化地展示你的想法，比如图片、数学公式、代码等。你还可以通过<strong>主题</strong>的配置获得更加符合个人审美的博客样式，更多的功能特性，比如友情链接，评论、分享、打赏功能等。</p>
-<p>最重要的是，一次配置，就能帮助你免去网站版式设计的烦恼。把你的双手解放出来，尽情地写作与记录。</p>
-<p>为了更好地做到这一点，通常我们使用·Markdown·来辅助写作需求。</p>
-<h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h3><h4 id="1-1-创建新的Github空仓库"><a href="#1-1-创建新的Github空仓库" class="headerlink" title="1.1 创建新的Github空仓库"></a>1.1 创建新的Github空仓库</h4><p>创建时只填写仓库名字，格式必须为<code>&lt;yourname&gt;.github.io</code>，例如我的为<code>ramonyeung.github.io</code>.如果不购买域名，这将会是你的博客网址。</p>
-<h4 id="1-2-安装软件"><a href="#1-2-安装软件" class="headerlink" title="1.2 安装软件"></a>1.2 安装软件</h4><p>Node.js <a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></p>
-<p>​    Hexo的依赖包，支持其主体功能。版本v4.6.0以上即可。</p>
-<p>Git Bash <a href="http://git-scm.com/download/" target="_blank" rel="external">http://git-scm.com/download/</a></p>
-<p>​    版本管理，将本地的Hexo文件提交到GitHub或Coding中。版本随意。</p>
-<p>Hexo</p>
-<p>​    <code>npm install -g hexo</code> # -g 表示global，在全局环境中安装Hexo。</p>
-<h3 id="2-初始化Hexo博客"><a href="#2-初始化Hexo博客" class="headerlink" title="2. 初始化Hexo博客"></a>2. 初始化Hexo博客</h3><p>Hexo已经简化了创建一个基本博客的流程。在E盘根目录创建一个名为<code>blog</code>的文件夹。进入<code>E:\blog</code>文件夹，右键点击空白处，选择<code>Git Bash Here</code>，打开一个终端（Terminal / Command Line)。</p>
-<ul>
-<li>输入<code>hexo init</code>，Hexo将帮你自动生成建立网站的必要文件。默认使用Landscape主题。</li>
-<li>安装依赖包<code>npm install</code>和<code>npm install hexo-deployer-git --save</code>.</li>
-<li>输入<code>hexo g</code>.</li>
-<li>输入<code>hexo s</code>.</li>
-</ul>
-<p>在浏览器访问<a href="http://localhost:4000/，即可看到博客的初始效果。" target="_blank" rel="external">http://localhost:4000/，即可看到博客的初始效果。</a></p>
-<h3 id="3-由本地到远程仓库"><a href="#3-由本地到远程仓库" class="headerlink" title="3. 由本地到远程仓库"></a>3. 由本地到远程仓库</h3><p>目前博客的内容仅在本地，用户不可能访问你的电脑中的内容，这太危险了。所以，需要一个托管代码和博客内容的Github仓库，也就是前面创建的<code>ramonyeung.github.io</code>仓库。</p>
-<h4 id="3-1-配置-config-yml"><a href="#3-1-配置-config-yml" class="headerlink" title="3.1 配置_config.yml"></a>3.1 配置_config.yml</h4><p>注意这个文件位于根目录下，我的是<code>E:\blog</code>.它是<code>站点配置文件</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy: </div><div class="line">  type: git</div><div class="line">  repository: https://github.com/tengj/tengj.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-<h4 id="3-2-配置SSH连接"><a href="#3-2-配置SSH连接" class="headerlink" title="3.2 配置SSH连接"></a>3.2 配置SSH连接</h4><p>配置SSH连接是为了更好更快地连接到GitHub并提交、存储你的内容。依次输入下面的<code>Shell Script</code>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 检查先前是否有SSH keys，如果有，则删除</div><div class="line">ls -al ~/.ssh</div><div class="line">cd ~/.ssh</div><div class="line">rm -rf *</div><div class="line"></div><div class="line">ssh-keygen -t rsa -C &quot;capriceyhh@gmail.com&quot; # 你注册GitHub时使用的邮箱</div><div class="line"># 此处需要按两次回车，保存ssh key到默认位置并忽略passphrase</div><div class="line"></div><div class="line">ssh-agent -s # 启动ssh agent</div><div class="line">eval `ssh-agent -s` </div><div class="line">ssh-add </div><div class="line">clip &lt; ~/.ssh/id_rsa.pub # 复制你的公钥</div></pre></td></tr></table></figure>
-<p>前往GitHub进行SSH公钥设置<code>Personal setting-&gt;SSH and GPG keys-&gt;New SSH key</code>，将剪贴板中的内容复制到<code>Key</code>中并添加。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 检查连接是否成功建立</div><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure>
-<p>切换目录到E:\blog，尝试同步文件到远程仓库。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd E:\blog</div><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
-<h4 id="3-3-发布测试文章"><a href="#3-3-发布测试文章" class="headerlink" title="3.3 发布测试文章"></a>3.3 发布测试文章</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;what-is-feature-engineering&quot;</div><div class="line"># 最好是英文名</div></pre></td></tr></table></figure>
-<p>在使用<code>hexo new</code>或<code>hexo n</code>命令时，实际上是在文件夹<code>E:\blog\source\_posts</code>中创建了一个新的Markdown文件，并带有一个固定的yaml格式配置。打开Markdown文件你会看到：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: Hexo博客建立指南（1/3）</div><div class="line">date: 2016-10-30 15:00:59</div><div class="line"><span class="section">tags: [Hexo, Building things on you own]</span></div><div class="line">---</div></pre></td></tr></table></figure>
-<p>所以，写作的过程就是完成这个Markdown文件的后续部分。在你确认将内容提交到博客网站上时，使用<code>hexo g</code>自动生成所有配置文件，再使用<code>hexo s</code>在本地唤醒一个HTTP服务，进行查看；或者使用<code>hexo d</code>将文件直接部署到远程GitHub仓库。</p>
-<h3 id="4-Footnotes"><a href="#4-Footnotes" class="headerlink" title="4. Footnotes"></a>4. Footnotes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo g # 即 hexo generate 根据主题自动生成必要的文件</div><div class="line">hexo s # 即 hexo server   启动本地的HTTP Server预览博客效果</div><div class="line">hexo n # 即 hexo new      新建一篇Markdown文章</div><div class="line">hexo d # 即 hexo deploy   将内容部署到GitHub仓库</div></pre></td></tr></table></figure>
-
-          
+          <p>拥有自己的个人天地是一件很酷的事情，你可以记录任何你想要记录的事情，甚至与他人分享你的经验、知识或见解。选择GitHub Pages + Hexo服务能够让你更加多样化地展示你的想法，比如图片、数学公式、代码等。你还可以通过<strong>主题</strong>的配置获得更加符合个人审美的博客样式，更多的功能特性，比如友情链接，评论、分享、打赏功能等。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/30/hexo-intro-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
