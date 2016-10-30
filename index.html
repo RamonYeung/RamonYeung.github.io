@@ -248,8 +248,149 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/28/How-does-Multiple-Assigment-Work-Internally/" itemprop="url">
-                  How-does-Multiple-Assigment-Work-Internally
+                <a class="post-title-link" href="/2016/10/30/hexo-intro-1/" itemprop="url">
+                  Hexo博客建立指南（1/3）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-30T15:00:59+08:00" content="2016-10-30">
+              2016-10-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/30/hexo-intro-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/30/hexo-intro-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/30/hexo-intro-1/" class="leancloud_visitors" data-flag-title="Hexo博客建立指南（1/3）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>拥有自己的个人天地是一件很酷的事情，你可以记录任何你想要记录的事情，甚至与他人分享你的经验、知识或见解。选择GitHub Pages + Hexo服务能够让你更加多样化地展示你的想法，比如图片、数学公式、代码等。你还可以通过<strong>主题</strong>的配置获得更加符合个人审美的博客样式，更多的功能特性，比如友情链接，评论、分享、打赏功能等。</p>
+<p>最重要的是，一次配置，就能帮助你免去网站版式设计的烦恼。把你的双手解放出来，尽情地写作与记录。</p>
+<p>为了更好地做到这一点，通常我们使用·Markdown·来辅助写作需求。</p>
+<h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h3><h4 id="1-1-创建新的Github空仓库"><a href="#1-1-创建新的Github空仓库" class="headerlink" title="1.1 创建新的Github空仓库"></a>1.1 创建新的Github空仓库</h4><p>创建时只填写仓库名字，格式必须为<code>&lt;yourname&gt;.github.io</code>，例如我的为<code>ramonyeung.github.io</code>.如果不购买域名，这将会是你的博客网址。</p>
+<h4 id="1-2-安装软件"><a href="#1-2-安装软件" class="headerlink" title="1.2 安装软件"></a>1.2 安装软件</h4><p>Node.js <a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></p>
+<p>​    Hexo的依赖包，支持其主体功能。版本v4.6.0以上即可。</p>
+<p>Git Bash <a href="http://git-scm.com/download/" target="_blank" rel="external">http://git-scm.com/download/</a></p>
+<p>​    版本管理，将本地的Hexo文件提交到GitHub或Coding中。版本随意。</p>
+<p>Hexo</p>
+<p>​    <code>npm install -g hexo</code> # -g 表示global，在全局环境中安装Hexo。</p>
+<h3 id="2-初始化Hexo博客"><a href="#2-初始化Hexo博客" class="headerlink" title="2. 初始化Hexo博客"></a>2. 初始化Hexo博客</h3><p>Hexo已经简化了创建一个基本博客的流程。在E盘根目录创建一个名为<code>blog</code>的文件夹。进入<code>E:\blog</code>文件夹，右键点击空白处，选择<code>Git Bash Here</code>，打开一个终端（Terminal / Command Line)。</p>
+<ul>
+<li>输入<code>hexo init</code>，Hexo将帮你自动生成建立网站的必要文件。默认使用Landscape主题。</li>
+<li>安装依赖包<code>npm install</code>和<code>npm install hexo-deployer-git --save</code>.</li>
+<li>输入<code>hexo g</code>.</li>
+<li>输入<code>hexo s</code>.</li>
+</ul>
+<p>在浏览器访问<a href="http://localhost:4000/，即可看到博客的初始效果。" target="_blank" rel="external">http://localhost:4000/，即可看到博客的初始效果。</a></p>
+<h3 id="3-由本地到远程仓库"><a href="#3-由本地到远程仓库" class="headerlink" title="3. 由本地到远程仓库"></a>3. 由本地到远程仓库</h3><p>目前博客的内容仅在本地，用户不可能访问你的电脑中的内容，这太危险了。所以，需要一个托管代码和博客内容的Github仓库，也就是前面创建的<code>ramonyeung.github.io</code>仓库。</p>
+<h4 id="3-1-配置-config-yml"><a href="#3-1-配置-config-yml" class="headerlink" title="3.1 配置_config.yml"></a>3.1 配置_config.yml</h4><p>注意这个文件位于根目录下，我的是<code>E:\blog</code>.它是<code>站点配置文件</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy: </div><div class="line">  type: git</div><div class="line">  repository: https://github.com/tengj/tengj.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+<h4 id="3-2-配置SSH连接"><a href="#3-2-配置SSH连接" class="headerlink" title="3.2 配置SSH连接"></a>3.2 配置SSH连接</h4><p>配置SSH连接是为了更好更快地连接到GitHub并提交、存储你的内容。依次输入下面的<code>Shell Script</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 检查先前是否有SSH keys，如果有，则删除</div><div class="line">ls -al ~/.ssh</div><div class="line">cd ~/.ssh</div><div class="line">rm -rf *</div><div class="line"></div><div class="line">ssh-keygen -t rsa -C &quot;capriceyhh@gmail.com&quot; # 你注册GitHub时使用的邮箱</div><div class="line"># 此处需要按两次回车，保存ssh key到默认位置并忽略passphrase</div><div class="line"></div><div class="line">ssh-agent -s # 启动ssh agent</div><div class="line">eval `ssh-agent -s` </div><div class="line">ssh-add </div><div class="line">clip &lt; ~/.ssh/id_rsa.pub # 复制你的公钥</div></pre></td></tr></table></figure>
+<p>前往GitHub进行SSH公钥设置<code>Personal setting-&gt;SSH and GPG keys-&gt;New SSH key</code>，将剪贴板中的内容复制到<code>Key</code>中并添加。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 检查连接是否成功建立</div><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure>
+<p>切换目录到E:\blog，尝试同步文件到远程仓库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd E:\blog</div><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
+<h4 id="3-3-发布测试文章"><a href="#3-3-发布测试文章" class="headerlink" title="3.3 发布测试文章"></a>3.3 发布测试文章</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;what-is-feature-engineering&quot;</div><div class="line"># 最好是英文名</div></pre></td></tr></table></figure>
+<p>在使用<code>hexo new</code>或<code>hexo n</code>命令时，实际上是在文件夹<code>E:\blog\source\_posts</code>中创建了一个新的Markdown文件，并带有一个固定的yaml格式配置。打开Markdown文件你会看到：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: Hexo博客建立指南（1/3）</div><div class="line">date: 2016-10-30 15:00:59</div><div class="line"><span class="section">tags: [Hexo, Building things on you own]</span></div><div class="line">---</div></pre></td></tr></table></figure>
+<p>所以，写作的过程就是完成这个Markdown文件的后续部分。在你确认将内容提交到博客网站上时，使用<code>hexo g</code>自动生成所有配置文件，再使用<code>hexo s</code>在本地唤醒一个HTTP服务，进行查看；或者使用<code>hexo d</code>将文件直接部署到远程GitHub仓库。</p>
+<h3 id="4-Footnotes"><a href="#4-Footnotes" class="headerlink" title="4. Footnotes"></a>4. Footnotes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo g # 即 hexo generate 根据主题自动生成必要的文件</div><div class="line">hexo s # 即 hexo server   启动本地的HTTP Server预览博客效果</div><div class="line">hexo n # 即 hexo new      新建一篇Markdown文章</div><div class="line">hexo d # 即 hexo deploy   将内容部署到GitHub仓库</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/28/How-does-Multiple-Assignment-Work-Internally/" itemprop="url">
+                  How does Multiple Assignment Work Internally
                 </a>
               
             
@@ -273,8 +414,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/28/How-does-Multiple-Assigment-Work-Internally/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/How-does-Multiple-Assigment-Work-Internally/" itemprop="commentsCount"></span>
+                <a href="/2016/10/28/How-does-Multiple-Assignment-Work-Internally/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/How-does-Multiple-Assignment-Work-Internally/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -284,7 +425,7 @@
 
           
           
-             <span id="/2016/10/28/How-does-Multiple-Assigment-Work-Internally/" class="leancloud_visitors" data-flag-title="How-does-Multiple-Assigment-Work-Internally">
+             <span id="/2016/10/28/How-does-Multiple-Assignment-Work-Internally/" class="leancloud_visitors" data-flag-title="How does Multiple Assignment Work Internally">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -309,7 +450,7 @@
         
           <p>Learning the pythonic way to code makes your code elegant and easy to understand. Since it’s a different coding style among other languages, coder like me should understand completely about the underlying mechanism. In this post, we will talk about <code>multiple assignment</code>, a.k.a. <code>tuple assignment</code>.</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/28/How-does-Multiple-Assigment-Work-Internally/#more" rel="contents">
+            <a class="btn" href="/2016/10/28/How-does-Multiple-Assignment-Work-Internally/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -537,138 +678,6 @@
               阅读全文 &raquo;
             </a>
           </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/25/cURL-15-practice/" itemprop="url">
-                  practicing cURL with 15 examples
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-25T13:30:30+08:00" content="2016-10-25">
-              2016-10-25
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/25/cURL-15-practice/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/25/cURL-15-practice/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/10/25/cURL-15-practice/" class="leancloud_visitors" data-flag-title="practicing cURL with 15 examples">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<h3 id="1-Dowanload-a-Single-File"><a href="#1-Dowanload-a-Single-File" class="headerlink" title="1. Dowanload a Single File"></a>1. Dowanload a Single File</h3><p>The following command will get the content and display it on your terminal.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl http://www.centos.org</div></pre></td></tr></table></figure>
-<p>To store the output in a file: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl http://www.centos.org &gt; centos-org.html</div></pre></td></tr></table></figure>
-<h3 id="2-Save-the-cURL-Output-to-a-file"><a href="#2-Save-the-cURL-Output-to-a-file" class="headerlink" title="2. Save the cURL Output to a file"></a>2. Save the cURL Output to a file</h3><ul>
-<li>-o : saved filename provided in the command line.</li>
-<li>-O : the filename in the URL will be taken.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">curl -o mygettext.html http://www.gnu.org/gettext.html</div><div class="line"></div><div class="line">curl -O http://www.gnu.org/gettext.html</div></pre></td></tr></table></figure>
-<h3 id="3-Fetch-Multiple-File-at-a-time"><a href="#3-Fetch-Multiple-File-at-a-time" class="headerlink" title="3. Fetch Multiple File at a time"></a>3. Fetch Multiple File at a time</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -O URL1 -O URL2</div></pre></td></tr></table></figure>
-<h3 id="4-Follow-HTTP-location-Headers-with-L-option"><a href="#4-Follow-HTTP-location-Headers-with-L-option" class="headerlink" title="4. Follow HTTP location Headers with -L option"></a>4. Follow HTTP location Headers with -L option</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">curl http://www.google.com</div><div class="line"></div><div class="line">&lt;TITLE&gt;302 Moved&lt;/TITLE&gt;</div><div class="line">&lt;H1&gt;302 Moved&lt;/H1&gt;</div><div class="line">The document has moved</div><div class="line">&lt;A HREF=&quot;http://www.google.co.in/&quot;&gt;here&lt;/A&gt;</div><div class="line"></div><div class="line"># so we change this command a little bit.</div><div class="line">curl -L http://www.google.com</div></pre></td></tr></table></figure>
-<h3 id="5-Continue-Resume-a-Previous-Download"><a href="#5-Continue-Resume-a-Previous-Download" class="headerlink" title="5. Continue/Resume a Previous Download"></a>5. Continue/Resume a Previous Download</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">curl -O http://www.gnu.org/gettext.html</div><div class="line"></div><div class="line">curl -C - -O http://www.gnu.org/gettext.html</div></pre></td></tr></table></figure>
-<h3 id="6-Limit-the-Rate-of-Data-Transfer"><a href="#6-Limit-the-Rate-of-Data-Transfer" class="headerlink" title="6. Limit the Rate of Data Transfer"></a>6. Limit the Rate of Data Transfer</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl --limit-rate 1000B -O http://www.gnu.org/gettext.html</div></pre></td></tr></table></figure>
-<h3 id="7-Download-a-file-only-if-it-is-modified-before-after-the-given-time"><a href="#7-Download-a-file-only-if-it-is-modified-before-after-the-given-time" class="headerlink" title="7. Download a file only if it is modified before/after the given time."></a>7. Download a file only if it is modified before/after the given time.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -z 21-Dec-11 http://www.example.com/yy.html</div></pre></td></tr></table></figure>
-<h3 id="8-Pass-HTTP-Authentication-in-cURL"><a href="#8-Pass-HTTP-Authentication-in-cURL" class="headerlink" title="8. Pass HTTP Authentication in cURL"></a>8. Pass HTTP Authentication in cURL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -u username:password URL</div></pre></td></tr></table></figure>
-<h3 id="9-Download-Files-from-FTP-server"><a href="#9-Download-Files-from-FTP-server" class="headerlink" title="9. Download Files from FTP server"></a>9. Download Files from <a href="http://www.thegeekstuff.com/2010/06/ftp-sftp-tutorial/" target="_blank" rel="external">FTP</a> server</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -u ftpuser:ftppass -O ftp://ftp_server/public_html/xss.php</div></pre></td></tr></table></figure>
-<h3 id="10-List-Download-using-Ranges"><a href="#10-List-Download-using-Ranges" class="headerlink" title="10. List/Download using Ranges"></a>10. List/Download using Ranges</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl   ftp://ftp.uk.debian.org/debian/pool/main/[a-z]/</div></pre></td></tr></table></figure>
-<h3 id="11-Upload-Files-to-FTP-Server"><a href="#11-Upload-Files-to-FTP-Server" class="headerlink" title="11. Upload Files to FTP Server"></a>11. Upload Files to FTP Server</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -u ftpuser:ftppass -T myfile.txt ftp://ftp.testserver.com</div></pre></td></tr></table></figure>
-<h3 id="12-More-Information-using-Verbose-and-Trace-Option"><a href="#12-More-Information-using-Verbose-and-Trace-Option" class="headerlink" title="12. More Information using Verbose and Trace Option"></a>12. More Information using Verbose and Trace Option</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -v http://google.co.in</div></pre></td></tr></table></figure>
-<h3 id="13-Get-Definition-of-a-Word-using-DICT-Protocol"><a href="#13-Get-Definition-of-a-Word-using-DICT-Protocol" class="headerlink" title="13. Get Definition of a Word using DICT Protocol"></a>13. Get Definition of a Word using DICT Protocol</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl dict://dict.org/d:bash</div></pre></td></tr></table></figure>
-<h3 id="14-Use-Proxy-to-Download-a-File"><a href="#14-Use-Proxy-to-Download-a-File" class="headerlink" title="14. Use Proxy to Download a File"></a>14. Use Proxy to Download a File</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -x proxysever.test.com:3128 http://google.co.in</div></pre></td></tr></table></figure>
-<h3 id="15-Send-Mail-using-SMTP-Protocol"><a href="#15-Send-Mail-using-SMTP-Protocol" class="headerlink" title="15. Send Mail using SMTP Protocol"></a>15. Send Mail using SMTP Protocol</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl --mail-from blah@test.com --mail-rcpt foo@test.com smtp://mailserver.com</div></pre></td></tr></table></figure>
-
-          
         
       
     </div>
@@ -1052,115 +1061,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/07/hexo-intro-4/" itemprop="url">
-                  hexo-intro-4
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-07T21:23:14+08:00" content="2016-10-07">
-              2016-10-07
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/07/hexo-intro-4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/07/hexo-intro-4/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/10/07/hexo-intro-4/" class="leancloud_visitors" data-flag-title="hexo-intro-4">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/07/hexo-intro-3/" itemprop="url">
                   hexo-intro-3
                 </a>
@@ -1358,6 +1258,115 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/07/what-is-feature-engineering/" itemprop="url">
+                  什么是特征工程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-07T13:11:37+08:00" content="2016-10-07">
+              2016-10-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/07/what-is-feature-engineering/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/07/what-is-feature-engineering/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/07/what-is-feature-engineering/" class="leancloud_visitors" data-flag-title="什么是特征工程">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1403,7 +1412,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1413,7 +1422,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
